@@ -9,6 +9,8 @@ import numpy as np
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from mlflow.models import infer_signature
 import joblib
+import shutil
+import os
 
 
 def scale_frame(frame):
@@ -74,6 +76,10 @@ if __name__ == "__main__":
         
         predictions = best.predict(X_train)
         signature = infer_signature(X_train, predictions)
+
+        if os.path.exists("saved_model"):
+            shutil.rmtree("saved_model")
+
         mlflow.sklearn.save_model(
             sk_model=best,
             path="saved_model",
