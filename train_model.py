@@ -28,7 +28,6 @@ def eval_metrics(actual, pred):
 
 
 if __name__ == "__main__":
-    mlflow.set_tracking_uri("http://127.0.0.1:5000")
     df = pd.read_csv("./df_clear.csv")
     X,Y, scaler  = scale_frame(df)
     X_train, X_val, y_train, y_val = train_test_split(X, Y,
