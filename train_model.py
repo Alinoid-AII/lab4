@@ -27,7 +27,7 @@ def eval_metrics(actual, pred):
     return accuracy, precision, recall, f1
 
 
-def train():
+if __name__ == "__main__":
     mlflow.set_tracking_uri("http://127.0.0.1:5000")
     df = pd.read_csv("./df_clear.csv")
     X,Y, scaler  = scale_frame(df)
@@ -78,6 +78,3 @@ def train():
         model_info = mlflow.sklearn.log_model(best, "model", signature=signature)
         
         print(model_info.model_uri)
-
-if __name__ == "__main__":
-    train()
