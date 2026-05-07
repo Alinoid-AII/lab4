@@ -75,6 +75,10 @@ if __name__ == "__main__":
         
         predictions = best.predict(X_train)
         signature = infer_signature(X_train, predictions)
-        model_info = mlflow.sklearn.log_model(best, "model", signature=signature)
-        
-        print(model_info.model_uri)
+        mlflow.sklearn.save_model(
+            sk_model=best,
+            path="saved_model",
+            signature=signature
+        )
+
+        print("./saved_model")
